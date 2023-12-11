@@ -1,0 +1,21 @@
+//此代码为生成的代码请勿修改 !!!
+
+export enum MetaFieldType {
+BIG_INT = 'BIG_INT',
+BOOL = 'BOOL',
+DATE = 'DATE',
+DATETIME = 'DATETIME',
+EMAIL = 'EMAIL',
+FLOAT = 'FLOAT',
+INT = 'INT',
+IPV4 = 'IPV4',
+PORT = 'PORT',
+STR = 'STR',
+TEXT = 'TEXT',
+PASSWORD = 'PASSWORD',
+TIME_DURATION = 'TIME_DURATION',
+ARRAY = 'ARRAY',
+OBJECT = 'OBJECT',
+MAP = 'MAP'
+}
+

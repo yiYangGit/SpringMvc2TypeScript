@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.blue-veery</groupId>
+    <artifactId>spring-rest2ts</artifactId>
+    <version>1.2.6--2021-1-18</version>
+    <packaging>pom</packaging>
+
+    <name>spring-rest2ts</name>
+    <description>spring-rest2ts generates data model and services in TypeScript based on Spring MVC annotations. It
+        supports generation for Angular and React
+    </description>
+    <url>https://github.com/blue-veery-gmbh/spring-rest-2-ts</url>
+
+    <organization>
+        <url>https://github.com/blue-veery-gmbh</url>
+        <name>blue veery GmbH</name>
+    </organization>
+    <inceptionYear>2019</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Tomasz Woźniak</name>
+            <email>tomasz.wozniak@blue-veery.com</email>
+            <organization>blue veery GmbH</organization>
+            <organizationUrl>https://github.com/blue-veery-gmbh</organizationUrl>
+        </developer>
+        <developer>
+            <name>Konrad Stachera</name>
+            <email>konrad.stachera@blue-veery.com</email>
+            <organization>blue veery GmbH</organization>
+            <organizationUrl>https://github.com/blue-veery-gmbh</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <spring-rest2ts.version>1.2.6--2021-1-18</spring-rest2ts.version>
+    </properties>
+
+
+    <modules>
+        <module>spring-rest2ts-generator</module>
+        <module>spring-rest2ts-jackson</module>
+        <module>spring-rest2ts-spring</module>
+        <module>spring-rest2ts-jax-rs</module>
+        <module>spring-rest2ts-angular2json</module>
+        <module>spring-rest2ts-spring-data</module>
+    </modules>
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>spring-rest2ts-swagger</module>
+                <module>spring-rest2ts-examples</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+
+            </build>
+        </profile>
+    </profiles>
+
+    <scm>
+        <connection>scm:git:git://github.com/blue-veery-gmbh/spring-rest-2-ts.git</connection>
+        <developerConnection>scm:git:github.com/blue-veery-gmbh/spring-rest-2-ts.git</developerConnection>
+        <url>https://github.com/blue-veery-gmbh/spring-rest-2-ts</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                    <compilerArgs>
+                        <compilerArg>-parameters</compilerArg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
